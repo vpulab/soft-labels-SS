@@ -1,4 +1,4 @@
-
+Code for [Soft labelling for semantic segmentation: Bringing coherence to label down-sampling](https://arxiv.org/pdf/2302.13961), currently under review. 
 ## Installation 
 
 * The code is tested with pytorch 1.3 and python 3.6
@@ -70,8 +70,10 @@ Train cityscapes
 ```bash
 > python -m runx.runx scripts/train_cityscapes.yml -i
 ```
-
 The first time this command is run, a centroid file has to be built for the dataset. It'll take about 10 minutes. The centroid file is used during training to know how to sample from the dataset in a class-uniform way.
 
 This training run should deliver a model that achieves ~84.4 IOU.
+
+## Code based on
+Baseline code comes from [NVIDIA semantic segmentation framework](https://github.com/NVIDIA/semantic-segmentation)
 
