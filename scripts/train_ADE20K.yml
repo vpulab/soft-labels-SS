@@ -1,0 +1,32 @@
+
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+  {
+   dataset: ADE20K,
+   cv: 0,
+   syncbn: true,
+   apex: true,
+   fp16: true,
+   crop_size: "520,520",
+   bs_trn: 2,
+   scale_min: 0.5,
+   scale_max: 2,
+   poly_exp: 2,
+   lr: 0.00006,
+   optimizer: adam,
+   color_aug: 0.125,
+   val_freq: 1,
+   rmi_loss: false,
+   poly_exp: 1.0,
+   max_epoch: 175,
+   default_scale: 1,
+   lr_schedule: poly,
+   supervised_mscale_loss_wt: 0.05,
+   weight_decay: 0.01,
+   snapshot: "/home/rac/Desktop/rhome/rac/semantic-segmentation/logs/train_ADE20K/ocrnet.HRNet_Mscale_roaring-moth_2022.11.15_14.57/last_checkpoint_ep71.pth",
+   arch: ocrnet.HRNet_Mscale,
+   result_dir: LOGDIR,
+   RUNX.TAG: '{arch}',
+  },
+]

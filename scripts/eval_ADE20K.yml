@@ -1,0 +1,20 @@
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+  {
+   dataset: ADE20K,
+   cv: 0,
+   syncbn: true,
+   apex: true,
+   fp16: true,
+   bs_val: 1,
+   eval: val,
+   extra_scales: "0.5,1.5,2",
+   default_scale: 1,
+   do_flip: true,
+   multi_scale_inference: true,
+   snapshot:  "/home/rac/Desktop/rhome/rac/semantic-segmentation/logs/train_ADE20K/ocrnet.HRNet_Mscale_wisteria-quail_2022.11.03_16.05/last_checkpoint_ep26.pth",
+   arch: ocrnet.HRNet_Mscale,
+   result_dir: LOGDIR,
+  },
+]

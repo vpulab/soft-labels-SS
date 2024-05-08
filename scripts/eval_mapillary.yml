@@ -1,0 +1,22 @@
+# Run Evaluation on Mapillary with a pretrained model
+
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+  {
+   dataset: mapillary,
+   syncbn: true,
+   apex: true,
+   fp16: true,
+   bs_val: 1,
+   eval: val,
+   pre_size: 2177,
+   amp_opt_level: O3,
+   extra_scales: "0.25,0.5,0.4,0.6",
+   do_flip: true,
+   multi_scale_inference: true,
+   snapshot: "/home/rac/Desktop/rhome/rac/semantic-segmentation/logs/train_mapillary/ocrnet.HRNet_Mscale_opalescent-sunfish_2022.09.14_10.43/best_checkpoint_ep1.pth",
+   arch: ocrnet.HRNet_Mscale,
+   result_dir: LOGDIR,
+  },
+]

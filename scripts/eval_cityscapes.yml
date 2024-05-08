@@ -1,0 +1,22 @@
+# Run Evaluation on Cityscapes with a pretrained model
+#   extra_scales: "0.5,0.375,0.625,0.75",
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+  {
+   dataset: cityscapes,
+   cv: 0,
+   syncbn: true,
+   apex: true,
+   fp16: true,
+   bs_val: 1,
+   eval: val,
+   extra_scales: "0.25,0.5,0.75,1.0",
+   default_scale: 0.25,
+   do_flip: true,
+   multi_scale_inference: true,
+   snapshot: "/home/rac/Desktop/rhome/rac/semantic-segmentation/logs/train_cityscapes/ocrnet.HRNet_Mscale_unselfish-yak_2022.12.02_10.42/best_checkpoint_ep36.pth",
+   arch: ocrnet.HRNet_Mscale,
+   result_dir: LOGDIR,
+  },
+]

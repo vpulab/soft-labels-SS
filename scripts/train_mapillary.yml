@@ -1,0 +1,33 @@
+# Single node Mapillary training recipe
+# Requires 32GB GPU
+
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+  {
+   dataset: mapillary,
+   cv: 0,
+   pre_size: 2177,
+   result_dir: LOGDIR,
+   crop_size: "714,714",
+   syncbn: true,
+   apex: true,
+   fp16: false,
+   freeze_trunk: false,
+   color_aug: 0.1,
+   scale_min: 0.4,
+   scale_max: 1,
+   default_scale: 1,
+   bs_trn: 2,
+   optimizer: sgd,
+   snapshot: "ASSETS_PATH/seg_weights/mapillary_ocrnet.HRNet_Mscale_fast-rattlesnake.pth",
+   RUNX.TAG: '{arch}',
+   lr_schedule: poly,
+   poly_exp: 1.0,
+   lr: 1e-3,
+   max_epoch: 200,
+   rmi_loss: false,
+   supervised_mscale_loss_wt: 0.05,
+   arch: ocrnet.HRNet_Mscale,
+  }
+]

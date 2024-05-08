@@ -1,0 +1,22 @@
+# Run Evaluation and Dump Images on Cityscapes with a pretrained model
+
+CMD: "python -m torch.distributed.launch --nproc_per_node=1 train.py"
+
+HPARAMS: [
+   {
+      dataset: cityscapes,
+      cv: 0,
+      syncbn: true,
+      apex: true,
+      fp16: true,
+      bs_val: 1,
+      eval: val,
+      dump_assets: true,
+      dump_all_images: true,
+      n_scales: "0.5,0.75,1.0,1.25",
+      dump_for_auto_labelling: true,
+      snapshot: "./logs/eval_cityscapes/512,1024\ mIoU\ 84.37\ bs\ 3/best_checkpoint_ep0.pth",
+      arch: ocrnet.HRNet_Mscale,
+      result_dir: LOGDIR,
+   },
+]
